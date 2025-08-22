@@ -17,7 +17,7 @@
 }
 
 /* Optional: dark mode overrides if needed */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     /* You can tweak darker variants if needed */
     --background: #2c2c2c;
