@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --background: #2c2c2c; /* Slate gray */
+  --foreground: #e4e4e4; /* Light gray */
+  --accent1: #5bfaff; /* Light cyan */
+  --accent2: #ffa4b5; /* Soft pink */
+  --primary: #9548f4;
+  --primary-dark: #7025cc; /* Lavender */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Optional: dark mode overrides if needed */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* You can tweak darker variants if needed */
+    --background: #2c2c2c;
+    --foreground: #e4e4e4;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* button {
+  background-color: var(--primary);
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+} */
+
+/* a {
+  color: var(--primary);
+}
+a:hover {
+  color: white;
+} */
