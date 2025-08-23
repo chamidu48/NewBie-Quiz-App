@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { auth } from "@/firebase/firebase.config";
 
 export default function Navbar() {
   const router = useRouter();
   const pathName = usePathname();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  const handleLogout = async () => {
+    await auth.signOut();
     router.push("/auth");
   };
 

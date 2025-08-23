@@ -1,6 +1,4 @@
 "use client";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/store/slices/user-slice";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -9,21 +7,16 @@ import Loader from "@/components/loader/loader";
 
 export default function AuthPage() {
   const router = useRouter();
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSaveUser = (uid, email) => {
-    dispatch(setUser({ uid, email }));
-  };
 
   const handleSigninWithEmailPassword = async () => {
     setLoading(true);
     try {
       const user = await signIn(email, password);
       const idToken = await user.getIdToken();
-      handleSaveUser(user.uid, user.email);
       localStorage.setItem("token", idToken);
       setLoading(false);
       router.push("/");
