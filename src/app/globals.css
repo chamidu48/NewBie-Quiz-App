@@ -2,6 +2,7 @@
 
 :root {
   --background: #2c2c2c; /* Slate gray */
+  --background-light: #323232; /* Slate gray */
   --foreground: #e4e4e4; /* Light gray */
   --accent1: #5bfaff; /* Light cyan */
   --accent2: #ffa4b5; /* Soft pink */
@@ -26,9 +27,13 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--background-light);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+  background-color: var(--background);
 }
 
 /* button {

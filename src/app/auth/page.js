@@ -1,4 +1,7 @@
 "use client";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/slices/user-slice";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/utils/firebaseAuth";
@@ -6,16 +9,21 @@ import Loader from "@/components/loader/loader";
 
 export default function AuthPage() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleSaveUser = (uid, email) => {
+    dispatch(setUser({ uid, email }));
+  };
 
   const handleSigninWithEmailPassword = async () => {
     setLoading(true);
     try {
       const user = await signIn(email, password);
       const idToken = await user.getIdToken();
-      console.log(email, password);
+      handleSaveUser(user.uid, user.email);
       localStorage.setItem("token", idToken);
       setLoading(false);
       router.push("/");
@@ -99,7 +107,7 @@ export default function AuthPage() {
                 onClick={() => handleSigninWithEmailPassword()}
                 className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
-                {loading ? <Loader/> : <>Sign in</>}
+                {loading ? <Loader /> : <>Sign in</>}
               </button>
             </div>
           </div>

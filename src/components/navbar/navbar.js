@@ -20,8 +20,8 @@ export default function Navbar() {
         <Link
           href="/"
           className={`${
-            pathName == "/" ? "text-indigo-500 " : "text-white "
-          } font-bold hover:text-indigo-500 flex gap-1 items-center`}
+            pathName == "/" ? "bg-indigo-500 p-2 rounded-md " : "text-white "
+          } font-bold flex gap-1 items-center transition-all duration-300 ease-in-out`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@ export default function Navbar() {
         <Link
           href="/quiz"
           className={`${
-            pathName == "/quiz" ? "text-indigo-500 " : "text-white "
-          } font-bold hover:text-indigo-500 flex gap-1 items-center`}
+            pathName == "/quiz" ? "bg-indigo-500 p-2 rounded-md" : "text-white "
+          } font-bold  flex gap-1 items-center transition-all duration-300 ease-in-out`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
