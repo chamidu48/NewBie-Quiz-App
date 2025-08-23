@@ -43,7 +43,7 @@ export default function Navbar() {
         <Link
           href="/quiz"
           className={`${
-            pathName == "/quiz" ? "bg-indigo-500 p-2 rounded-md" : "text-white "
+            pathName.startsWith("/quiz") ? "bg-indigo-500 p-2 rounded-md" : "text-white "
           } font-bold  flex gap-1 items-center transition-all duration-300 ease-in-out`}
         >
           <svg

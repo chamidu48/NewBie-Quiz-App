@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { subjectIcons } from "@/utils/iconRenderer";
 import { selectSubjects } from "@/store/selectors/subject-selector";
-import { setCurrentQuizSubject } from "@/store/slices/user-slice";
+import { clearSession, setCurrentQuizSubject } from "@/store/slices/user-slice";
 
 export default function QuizPage() {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export default function QuizPage() {
   const handleSelectSubject = (subject) => {
     const subjectSlug = slugify(subject);
     dispatch(setCurrentQuizSubject({ subject: subjectSlug }));
+    dispatch(clearSession());
     router.push(`/quiz/${subjectSlug}`);
   };
 
@@ -42,7 +43,7 @@ export default function QuizPage() {
               hover:scale-105 hover:bg-indigo-800 transition-all duration-300 ease-in-out cursor-pointer"
               >
                 {subjectIcons[subject.name]}
-                <p className="font-bold text-2xl mt-4">{subject.name}</p>
+                <p className="font-bold text-2xl mt-4 capitalize">{subject.name}</p>
                 <p className="text-center">{subject.description}</p>
               </div>
             </button>
