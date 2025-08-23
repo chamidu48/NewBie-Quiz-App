@@ -7,39 +7,34 @@ export default function Home() {
   const dispatch = useDispatch();
   const subjects = [
     {
-      name: "Science",
-      description: "Explore the universe through biology, physics, and chemistry",
-      icon: "science",
+      description:
+        "Explore the universe through biology, physics, and chemistry",
+      name: "science",
     },
     {
-      name: "Math",
       description: "Numbers, equations, and problem-solving for logical minds",
-      icon: "math",
+      name: "math",
     },
     {
-      name: "History",
       description: "Discover events and people that shaped the world",
-      icon: "history",
+      name: "history",
     },
     {
-      name: "Geography",
       description: "Understand Earth, its landscapes, climates, and people",
-      icon: "geography",
+      name: "geography",
     },
     {
-      name: "Art",
       description: "Express creativity through drawing, painting, and design",
-      icon: "art",
+      name: "art",
     },
     {
-      name: "Computer Science",
       description: "Learn coding, algorithms, and the magic of software",
-      icon: "computer-science",
+      name: "computer-science",
     },
   ];
-  
+
   const handleSaveSubjects = () => {
-    dispatch(setSubjects({subjects}));
+    dispatch(setSubjects({ subjects }));
   };
 
   useEffect(() => {

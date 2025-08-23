@@ -9,10 +9,11 @@ const questionsSlice = createSlice({
   initialState: initialState,
   reducers: {
     setQuestions: (state, action) => {
-      state.questions = action.payload;
+      const { questions } = action.payload;
+      state.questions = questions;
     },
     clearQuestions: (state) => {
-        state.questions = null;
+      state.questions = null;
     },
   },
 });

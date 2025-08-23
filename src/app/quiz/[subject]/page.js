@@ -1,21 +1,39 @@
 "use client";
 
-import { questions } from "@/app/constants/questions";
 import Loader from "@/components/loader/loader";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectQuizBySubject } from "@/store/selectors/quiz-selector";
+import { setQuestions } from "@/store/slices/question-slice";
+import { questions } from "@/app/constants/questions";
 
 export default function Quiz({ params }) {
+  const dispatch = useDispatch();
   const { subject } = React.use(params);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
 
-  const quizQuestions = questions.find((q)=>q.subject===subject).questions || [];
+  const quizQuestions = useSelector(selectQuizBySubject) || [];
   const currentQuestion = quizQuestions[currentIndex];
   const progress = ((currentIndex + 1) / quizQuestions.length) * 100;
+
+  const handleFetchQuestionsForSubject = () => {
+    //API fetch skip for now
+    setIsloading(true);
+    dispatch(setQuestions({ questions }));
+  };
+
+  useEffect(() => {
+    if (quizQuestions.length == 0) {
+      handleFetchQuestionsForSubject();
+    } else {
+      setIsloading(false);
+    }
+  }, [dispatch, quizQuestions]);
 
   const handleNext = () => {
     if (selected === currentQuestion.answer) {
@@ -88,10 +106,10 @@ export default function Quiz({ params }) {
                 <h2 className="text-2xl font-bold mb-4">
                   Question {currentIndex + 1} of {quizQuestions.length}
                 </h2>
-                <p className="mb-6 text-lg">{currentQuestion.question}</p>
+                <p className="mb-6 text-lg">{currentQuestion?.question}</p>
 
                 <div className="space-y-3">
-                  {currentQuestion.options.map((option, idx) => (
+                  {currentQuestion?.options.map((option, idx) => (
                     <label
                       key={idx}
                       className={`block p-3 rounded-lg border cursor-pointer transition 

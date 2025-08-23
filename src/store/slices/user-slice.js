@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userId: null,
   email: null,
+  currentQuizSubject: null
 };
 
 const userSlice = createSlice({
@@ -14,6 +15,10 @@ const userSlice = createSlice({
       state.userId = uid;
       state.email = email;
     },
+    setCurrentQuizSubject: (state, action) => {
+      const { subject } = action.payload;
+      state.currentQuizSubject = subject;
+    },
     clearUser: (state) => {
       state.userId = null;
       state.email = null;
@@ -21,5 +26,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, setCurrentQuizSubject, clearUser } = userSlice.actions;
 export default userSlice.reducer;
